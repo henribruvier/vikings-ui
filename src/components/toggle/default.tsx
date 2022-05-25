@@ -23,9 +23,9 @@ export const Toggle = ({
 		)}
 		onChange={setIsActive}
 	>
-		<span className='sr-only'>Use setting</span>
+		<span className="sr-only">Use setting</span>
 		<span
-			aria-hidden='true'
+			aria-hidden="true"
 			className={classnames(
 				isActive ? 'translate-x-5' : 'translate-x-0',
 				'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200',

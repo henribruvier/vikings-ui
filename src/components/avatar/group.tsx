@@ -1,5 +1,5 @@
 import React from 'react';
-import type {Color} from '../../types/colors';
+import type { Color } from '../../types/colors';
 
 interface Props {
 	items?: string[];
@@ -21,11 +21,12 @@ export const AvatarGroup = ({
 
 	return (
 		<div className={`flex -space-x-${space} overflow-hidden`}>
-			{items.map(link => (
+			{items.map((link, index) => (
 				<img
+					key={index}
 					className={`inline-block ${avatarSize} rounded-full ring-2 ring-${color}`}
 					src={link}
-					alt=''
+					alt=""
 				/>
 			))}
 		</div>

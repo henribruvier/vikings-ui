@@ -35,18 +35,18 @@ export const BadgeWithRemove = ({
 		<span className={classes}>
 			{children}
 			<button
-				type='button'
+				type="button"
 				className={`ml-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-${color}-400 hover:bg-${color}-200 hover:text-${color}-500 focus:outline-none focus:bg-${color}-500 focus:text-white`}
 				onClick={onClick}
 			>
-				<span className='sr-only'>Remove option</span>
+				<span className="sr-only">Remove option</span>
 				<svg
-					className='h-2 w-2'
-					stroke='currentColor'
-					fill='none'
-					viewBox='0 0 8 8'
+					className="h-2 w-2"
+					stroke="currentColor"
+					fill="none"
+					viewBox="0 0 8 8"
 				>
-					<path strokeLinecap='round' strokeWidth='1.5' d='M1 1l6 6m0-6L1 7' />
+					<path strokeLinecap="round" strokeWidth="1.5" d="M1 1l6 6m0-6L1 7" />
 				</svg>
 			</button>
 		</span>

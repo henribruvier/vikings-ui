@@ -1,59 +1,76 @@
 import React from 'react';
+import {overrideTailwindClasses as twOverride} from 'tailwind-override';
 import classnames from 'classnames';
 import type {Color} from '../../types/colors';
+import {getColors, getSizes} from './utils';
 
-interface Props {
-	onClick: React.MouseEventHandler<HTMLButtonElement>;
-	children: React.ReactNode;
+export interface ButtonProps {
 	color?: Color;
 	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 	variant?: 'primary' | 'secondary' | 'white';
 	isDisabled?: boolean;
 	isRounded?: boolean;
+	type?: React.ButtonHTMLAttributes<any>['type'];
 }
 
-export const Button = ({
-	onClick,
-	children,
-	size = 'md',
-	color = 'sky',
-	variant = 'primary',
-	isDisabled = false,
-	isRounded = false,
-}: Props): JSX.Element => {
-	let s_ = 'px-4 py-2 text-sm';
-	if (size === 'xs') s_ = 'px-2.5 py-1.5 text-xs';
-	if (size === 'sm') s_ = 'px-3 py-2 text-sm leading-4';
-	if (size === 'lg') s_ = 'px-4 py-2 text-base';
-	if (size === 'xl') s_ = 'px-6 py-3 text-base';
+type NativeAttrs = Omit<React.ButtonHTMLAttributes<any>, keyof ButtonProps>;
+export type FullButtonProps = ButtonProps & NativeAttrs;
 
-	let c_ = `text-white bg-${color}-600 hover:bg-${color}-700 focus:ring-${color}-500`;
-	if (variant === 'secondary')
-		c_ = `text-${color}-700 bg-${color}-100 hover:bg-${color}-200 focus:ring-${color}-500`;
-	if (variant === 'white')
-		c_ = `text-gray-700 bg-white hover:bg-gray-50 focus:ring-${color}-500`;
-
-	let b_ = 'border-transparent';
-	if (variant === 'white') b_ = 'border-gray-300';
-
-	let r_ = 'rounded-md';
-	if (isRounded) r_ = 'rounded-full';
-
-	const classes = classnames(
-		s_,
-		c_,
-		b_,
-		r_,
-		`inline-flex items-center border shadow-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-500`,
-	);
-	return (
-		<button
-			type='button'
-			disabled={isDisabled}
-			className={classes}
-			onClick={onClick}
-		>
-			{children}
-		</button>
-	);
+const defaultProps: Partial<FullButtonProps> = {
+	type: 'button' as React.ButtonHTMLAttributes<any>['type'],
+	size: 'md',
+	color: 'sky',
+	variant: 'primary',
+	isDisabled: false,
+	isRounded: false,
 };
+
+const Button = React.forwardRef<
+	HTMLButtonElement,
+	React.PropsWithChildren<FullButtonProps>
+>(
+	(
+		btnProps: FullButtonProps & typeof defaultProps,
+		ref?: React.Ref<HTMLButtonElement>,
+	): JSX.Element => {
+		const {
+			children,
+			size,
+			color,
+			type,
+			variant,
+			isDisabled,
+			isRounded,
+			className,
+			...props
+		} = btnProps;
+
+		const btnSize = getSizes(size);
+		const btnColor = getColors(color, variant);
+		const b_ = variant === 'white' ? 'border-gray-300' : 'border-transparent';
+		const r_ = isRounded ? 'rounded-full' : 'rounded-md';
+
+		const classes = classnames(
+			btnSize,
+			btnColor,
+			b_,
+			r_,
+			`inline-flex items-center border shadow-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:text-white disabled:bg-slate-500`,
+		);
+		return (
+			<button
+				ref={ref}
+				/* eslint-disable-next-line react/button-has-type */
+				type={type}
+				disabled={isDisabled}
+				className={twOverride(`${classes} ${className}`)}
+				{...props}
+			>
+				{children}
+			</button>
+		);
+	},
+);
+
+Button.defaultProps = defaultProps;
+export {Button};

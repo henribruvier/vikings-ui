@@ -1,23 +1,12 @@
-const purgeEnabled = process.env.NODE_ENV === "production"
+/* eslint-disable unicorn/prefer-module */
+const withSiber = require('./src/utils/with-siber.js');
 
-console.log(`   ✅ purgeEnabled=${purgeEnabled}\n`)
+const config = {
+	content: ['./src/components/**/*.{js,ts,jsx,tsx}'],
+	theme: {
+		extend: {},
+	},
+	plugins: [],
+};
 
-module.exports = {
-  purge: {
-    enabled: purgeEnabled,
-    content: [
-      "./src/**/*.html",
-      "./src/**/*.tsx",
-      "./src/**/*.jsx",
-      "./public/**/*.html"
-    ]
-  },
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {}
-  },
-  variants: {
-    extend: {}
-  },
-  plugins: []
-}
+module.exports = withSiber(config);

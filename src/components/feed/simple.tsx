@@ -1,7 +1,7 @@
 import * as HIcons from '@heroicons/react/solid';
 import classNames from 'classnames';
 import React from 'react';
-import type {Color} from 'src/types/colors';
+import type {Color} from '../../types/colors';
 
 export interface FeedItem {
 	id: number;
@@ -17,8 +17,8 @@ interface Props {
 
 export const Feed = ({items}: Props) => {
 	return (
-		<div className='flow-root'>
-			<ul role='list' className='-mb-8'>
+		<div className="flow-root">
+			<ul role="list" className="-mb-8">
 				{items.map((item, itemIdx) => {
 					const {id, content, icon, iconBackground, iconColor} = item;
 					const {...icons} = HIcons;
@@ -31,14 +31,14 @@ export const Feed = ({items}: Props) => {
 					);
 					return (
 						<li key={id}>
-							<div className='relative pb-8'>
+							<div className="relative pb-8">
 								{itemIdx !== items.length - 1 ? (
 									<span
-										className='absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200'
-										aria-hidden='true'
+										className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
+										aria-hidden="true"
 									/>
 								) : null}
-								<div className='relative flex space-x-3'>
+								<div className="relative flex space-x-3">
 									<div>
 										<span
 											className={classNames(
@@ -46,12 +46,12 @@ export const Feed = ({items}: Props) => {
 												'flex h-8 w-8 items-center justify-center rounded-full ring-8 ring-white',
 											)}
 										>
-											<CustomIcon className={iconStyle} aria-hidden='true' />
+											<CustomIcon className={iconStyle} aria-hidden="true" />
 										</span>
 									</div>
-									<div className='flex min-w-0 flex-1 justify-between space-x-4 pt-1.5'>
+									<div className="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
 										<div>
-											<p className='text-sm text-gray-500'>{content}</p>
+											<p className="text-sm text-gray-500">{content}</p>
 										</div>
 									</div>
 								</div>

@@ -33,7 +33,7 @@ export const BadgeWithDot = ({
 
 	return (
 		<span className={classes}>
-			<svg className={dotClasses} fill='currentColor' viewBox='0 0 8 8'>
+			<svg className={dotClasses} fill="currentColor" viewBox="0 0 8 8">
 				<circle cx={4} cy={4} r={3} />
 			</svg>
 			{children}

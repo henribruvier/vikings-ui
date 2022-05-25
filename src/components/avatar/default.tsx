@@ -54,7 +54,7 @@ export const Avatar = ({
 	const r_ = isRounded ? 'rounded-full' : 'rounded';
 
 	const Container = ({children}: {children: JSX.Element}) => (
-		<span className='relative inline-block'>
+		<span className="relative inline-block">
 			{children}
 			{hasNotification && (
 				<span
@@ -80,11 +80,11 @@ export const Avatar = ({
 					)}
 				>
 					<svg
-						className='h-full w-full text-gray-300'
-						fill='currentColor'
-						viewBox='0 0 24 24'
+						className="h-full w-full text-gray-300"
+						fill="currentColor"
+						viewBox="0 0 24 24"
 					>
-						<path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
+						<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
 					</svg>
 				</span>
 			</Container>
@@ -107,14 +107,9 @@ export const Avatar = ({
 			</Container>
 		);
 
-	if (props.variant === 'image')
-		return (
-			<Container>
-				<img
-					className={classnames(r_, spanSize)}
-					src={props.imageLink}
-					alt=''
-				/>
-			</Container>
-		);
+	return (
+		<Container>
+			<img className={classnames(r_, spanSize)} src={props.imageLink} alt="" />
+		</Container>
+	);
 };

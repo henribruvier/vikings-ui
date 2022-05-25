@@ -1,7 +1,7 @@
-const tailwindcss = require('tailwindcss');
+/* eslint-disable unicorn/prefer-module */
 module.exports = {
-    plugins: [
-        tailwindcss('./tailwind.config.js'),
-        require('autoprefixer')
-    ],
+	plugins: {
+		tailwindcss: {},
+		autoprefixer: {},
+	},
 };

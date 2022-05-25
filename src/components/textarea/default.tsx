@@ -15,16 +15,16 @@ export const Textarea: React.FC<Props> = ({
 	return (
 		<div>
 			<label
-				htmlFor='comment'
-				className='block text-sm font-medium text-gray-700'
+				htmlFor="comment"
+				className="block text-sm font-medium text-gray-700"
 			>
 				{title}
 			</label>
-			<div className='mt-1'>
+			<div className="mt-1">
 				<textarea
 					rows={4}
-					name='comment'
-					id='comment'
+					name="comment"
+					id="comment"
 					className={`shadow-sm focus:ring-${color}-500 focus:border-${color}-500 block w-full sm:text-sm border-gray-300 rounded-md`}
 					defaultValue={defaultValue}
 				/>

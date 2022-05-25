@@ -1,7 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Switch } from '@headlessui/react';
+import React, {Dispatch, SetStateAction} from 'react';
+import {Switch} from '@headlessui/react';
 import classnames from 'classnames';
-import type { Color } from '../../../src/types/colors';
+import type {Color} from '../../types/colors';
 
 interface CommonProps {
 	title: string;
@@ -42,15 +42,16 @@ export const ActionPanel = ({
 		if (props.type === 'link') {
 			return (
 				<div
-					className={`${ctaPosition === 'bottom' && 'mt-3'
-						}  flex h-full flex-col items-center justify-center`}
+					className={`${
+						ctaPosition === 'bottom' && 'mt-3'
+					}  flex h-full flex-col items-center justify-center`}
 				>
 					<a
 						href={props.href}
-						className='font-medium text-indigo-600 hover:text-indigo-500'
+						className="font-medium text-indigo-600 hover:text-indigo-500"
 					>
 						{props.action}
-						<span aria-hidden='true'>&rarr;</span>
+						<span aria-hidden="true">&rarr;</span>
 					</a>
 				</div>
 			);
@@ -59,8 +60,9 @@ export const ActionPanel = ({
 		if (props.type === 'toggle')
 			return (
 				<div
-					className={`${ctaPosition === 'bottom' && 'mt-3'
-						}  flex h-full flex-col items-center justify-center`}
+					className={`${
+						ctaPosition === 'bottom' && 'mt-3'
+					}  flex h-full flex-col items-center justify-center`}
 				>
 					<Switch
 						checked={props.isActive}
@@ -71,7 +73,7 @@ export const ActionPanel = ({
 						onChange={props.setIsActive}
 					>
 						<span
-							aria-hidden='true'
+							aria-hidden="true"
 							className={classnames(
 								props.isActive ? 'translate-x-5' : 'translate-x-0',
 								'inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
@@ -81,21 +83,21 @@ export const ActionPanel = ({
 				</div>
 			);
 
-		if (props.type === 'button')
-			return (
-				<div
-					className={`${ctaPosition === 'bottom' && 'mt-3'
-						}  flex h-full flex-col items-center justify-center`}
+		return (
+			<div
+				className={`${
+					ctaPosition === 'bottom' && 'mt-3'
+				}  flex h-full flex-col items-center justify-center`}
+			>
+				<button
+					type="button"
+					className={`inline-flex items-center justify-center rounded-md border border-transparent px-4 py-2 font-medium text-${props.btnColor}-700 bg-${props.btnColor}-100 hover:bg-${props.btnColor}-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${props.btnColor}-500 sm:text-sm`}
+					onClick={props.onClick}
 				>
-					<button
-						type='button'
-						className={`inline-flex items-center justify-center rounded-md border border-transparent px-4 py-2 font-medium text-${props.btnColor}-700 bg-${props.btnColor}-100 hover:bg-${props.btnColor}-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${props.btnColor}-500 sm:text-sm`}
-						onClick={props.onClick}
-					>
-						{props.action}
-					</button>
-				</div>
-			);
+					{props.action}
+				</button>
+			</div>
+		);
 	};
 
 	return (
@@ -103,20 +105,21 @@ export const ActionPanel = ({
 			className={`bg-${bgColor}-100 flex w-10/12 max-w-5xl shadow sm:w-5/6 sm:rounded-lg`}
 		>
 			<div
-				className={`flex px-4 py-5 sm:p-6 ${ctaPosition === 'bottom'
-					? 'flex-col items-start justify-start'
-					: 'w-full  justify-around'
-					}     w-full`}
+				className={`flex px-4 py-5 sm:p-6 ${
+					ctaPosition === 'bottom'
+						? 'flex-col items-start justify-start'
+						: 'w-full  justify-around'
+				}     w-full`}
 			>
-				<div className='flex w-full flex-col items-start'>
-					<h3 className='text-lg font-medium leading-6 text-gray-900'>
+				<div className="flex w-full flex-col items-start">
+					<h3 className="text-lg font-medium leading-6 text-gray-900">
 						{title}
 					</h3>
-					<div className='mt-2 max-w-xl text-sm text-gray-500'>
+					<div className="mt-2 max-w-xl text-sm text-gray-500">
 						<p>{description}</p>
 					</div>
 				</div>
-				<div className='flex h-full flex-col items-center justify-center'>
+				<div className="flex h-full flex-col items-center justify-center">
 					<Cta />
 				</div>
 			</div>
